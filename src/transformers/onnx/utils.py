@@ -89,7 +89,11 @@ def get_preprocessor(model_name: str) -> Optional[Union["AutoTokenizer", "AutoFe
     except (ValueError, OSError, KeyError):
         tokenizer, feature_extractor = None, None
         try:
-            tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=False)
+            if model_name == "facebook/opt-13b":
+                tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=False)
+            else:
+                tokenizer = AutoTokenizer.from_pretrained(model_name)
+
         except (OSError, KeyError):
             pass
         try:

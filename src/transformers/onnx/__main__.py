@@ -61,7 +61,7 @@ def main():
     if args.preprocessor == "auto":
         preprocessor = get_preprocessor(args.model)
     elif args.preprocessor == "tokenizer":
-        preprocessor = AutoTokenizer.from_pretrained(args.model)
+        preprocessor = AutoTokenizer.from_pretrained(args.model, use_fast=False)
     elif args.preprocessor == "feature_extractor":
         preprocessor = AutoFeatureExtractor.from_pretrained(args.model)
     elif args.preprocessor == "processor":
